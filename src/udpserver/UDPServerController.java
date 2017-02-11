@@ -24,7 +24,7 @@ public class UDPServerController implements Initializable {
 
     @FXML
     private Button Button_Start;
-     @FXML
+    @FXML
     private Button Button_Stop;
     @FXML
     private Label label_UDPServer;
@@ -54,12 +54,16 @@ public class UDPServerController implements Initializable {
     private TextField Server_Port;
     @FXML
     private TextField Client_Port;
-    
-    
+
+    DatagramSocket serverSocket;
+
     @FXML
     private void handleButtonAction(ActionEvent event) throws Exception {
         System.out.println("You clicked me!");
-        DatagramSocket serverSocket = new DatagramSocket(5555);
+        //todo
+        // he verhinderen dat 2de keer socket wordt aangemaakt 
+        //
+        serverSocket = new DatagramSocket(5555);
         byte[] receiveData = new byte[1024];
         byte[] sendData = new byte[1024];
         int i = 0;
@@ -67,9 +71,9 @@ public class UDPServerController implements Initializable {
         while (true) {
             i = i + 1;
             //
-            System.out.println("wachten!" );
+            System.out.println("wachten!");
             //
-            //waarom komt dat niet op het scherm 
+            //waarom komt dat hieronder niet op het scherm 
             //
             label_UDPServer.setText("wachten op data");
             //
@@ -96,14 +100,15 @@ public class UDPServerController implements Initializable {
         }
         //label.setText("Hello World!");
     }
-@FXML
-    private void handleButtonStop(ActionEvent event)  {
+
+    @FXML
+    private void handleButtonStop(ActionEvent event) {
         System.out.println("Stop program");
         System.exit(0);
-       
-        }
-        //label.setText("Hello World!");
-    
+
+    }
+    //label.setText("Hello World!");
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
