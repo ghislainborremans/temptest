@@ -24,6 +24,8 @@ public class UDPServerController implements Initializable {
 
     @FXML
     private Button Button_Start;
+     @FXML
+    private Button Button_Stop;
     @FXML
     private Label label_UDPServer;
     @FXML
@@ -64,7 +66,13 @@ public class UDPServerController implements Initializable {
 
         while (true) {
             i = i + 1;
-            System.out.println("wachten!" + Button_Start.getText());
+            //
+            System.out.println("wachten!" );
+            //
+            //waarom komt dat niet op het scherm 
+            //
+            label_UDPServer.setText("wachten op data");
+            //
             DatagramPacket receivePacket = new DatagramPacket(receiveData, receiveData.length);
             serverSocket.receive(receivePacket);
             String sentence = new String(receivePacket.getData());
@@ -88,7 +96,14 @@ public class UDPServerController implements Initializable {
         }
         //label.setText("Hello World!");
     }
-
+@FXML
+    private void handleButtonStop(ActionEvent event)  {
+        System.out.println("Stop program");
+        System.exit(0);
+       
+        }
+        //label.setText("Hello World!");
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
